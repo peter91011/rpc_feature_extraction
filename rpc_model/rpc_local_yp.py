@@ -272,6 +272,7 @@ def eval(df, feature_cols, target_col, args, model_name, weight_col=None):
         raise RuntimeError(f'{model_name} does not exist...')
 
     y_pred = model.predict(df[feature_cols])
+    y_pred = np.array([max(0,x) if np.isnan(x)==False else x for x in y_pred])
     if weight_col:
         WRMSE = wrmse(df[target_col].values, y_pred, df[weight_col].values)
         WMAE = wmae(df[target_col].values, y_pred, df[weight_col].values)
@@ -297,7 +298,9 @@ def score(df, feature_cols, args, model_name):
         model = lgb.Booster(model_file=local_file)
     except:
         raise RuntimeError(f'{local_file} does not exist...')
-    return model.predict(df[feature_cols])
+    y_pred = model.predict(df[feature_cols])
+    y_pred = np.array([max(0,x) if np.isnan(x)==False else x for x in y_pred])
+    return y_pred
 
 def assign_confidence(df):
     all_cols = df.columns
@@ -309,6 +312,7 @@ def assign_confidence(df):
     df['confidence'].loc[pattern2] = 2
     df['confidence'].loc[pattern1] = 1
     return df.confidence.tolist()
+
 
 def run_train(args):
     # make sure model type is correct
@@ -343,11 +347,17 @@ def run_train(args):
     is_mobile_name = config["hash_id"]["is_mobile"]
     source_id_name = config["hash_id"]["source_id"]
     # df = read_data_parallel(args.train_path, config["schema"]["trainSchema"], cores=16)
-    df_eval1 = pd.read_csv('sample_data_full_feat/df_feat_all_coop_item_sortw1_'+'2022-11-20'+'.csv', nrows = 200000)
-    df_eval2 = pd.read_csv('sample_data_full_feat/df_feat_all_coop_item_sortw1_'+'2022-11-13'+'.csv', nrows = 100000)
-    df_eval3 = pd.read_csv('sample_data_full_feat/df_feat_all_coop_item_sortw1_'+'2022-11-06'+'.csv', nrows = 100000)
-    df_eval4 = pd.read_csv('sample_data_full_feat/df_feat_all_coop_item_sortw1_'+'2022-10-30'+'.csv', nrows = 100000)
-    df_eval = pd.concat([df_eval1,df_eval2,df_eval3,df_eval4])
+    df_eval1 = pd.read_csv('sample_data_full_feat/df_feat_all_coop_item_'+'2022-12-19'+'.csv')
+    df_eval1 = df_eval1[(df_eval1['sem_orders_brand_l'].isnull()==False)&(df_eval1['sem_orders_seller_l'].isnull()==False)]
+    df_eval2 = pd.read_csv('sample_data_full_feat/df_feat_all_coop_item_'+'2022-12-26'+'.csv')
+    df_eval2 = df_eval2[(df_eval2['sem_orders_brand_l'].isnull()==False)&(df_eval2['sem_orders_seller_l'].isnull()==False)]
+    df_eval3 = pd.read_csv('sample_data_full_feat/df_feat_all_coop_item_'+'2023-01-02'+'.csv')
+    df_eval3 = df_eval3[(df_eval3['sem_orders_brand_l'].isnull()==False)&(df_eval3['sem_orders_seller_l'].isnull()==False)]
+    df_eval4 = pd.read_csv('sample_data_full_feat/df_feat_all_coop_item_'+'2023-01-09'+'.csv')
+    df_eval4 = df_eval4[(df_eval4['sem_orders_brand_l'].isnull()==False)&(df_eval4['sem_orders_seller_l'].isnull()==False)]
+    df_eval5 = pd.read_csv('sample_data_full_feat/df_feat_all_coop_item_'+'2023-01-16'+'.csv')
+    df_eval5 = df_eval5[(df_eval5['sem_orders_brand_l'].isnull()==False)&(df_eval5['sem_orders_seller_l'].isnull()==False)]
+    df_eval = pd.concat([df_eval1,df_eval2,df_eval3,df_eval4,df_eval5])
     del df_eval1
     del df_eval2
     del df_eval3
@@ -356,8 +366,8 @@ def run_train(args):
     #df_eval = read_data_csv(filename)
     # sort by the least number of null values per row and select training size
     #df_eval = df_eval.iloc[df_eval.isnull().sum(1).sort_values(ascending=True).index]
-    # ignore v12 and v18 features since dctr_v2 only contains data after 2022/07/26 fro google pla
-    # df_eval = df_eval[[i for i in df_eval.columns if 'sem_' not in i  and 'v18' not in i and 'v12' not in i or 'bounce' in i or 'visit' in i]]
+    #df_eval = df_eval.sort_values('sem_clicks_l',ascending=False)
+    #df_eval = df_eval[(df_eval['sem_orders_brand_l'].isnull()==False)&(df_eval['sem_orders_seller_l'].isnull()==False)]
     # fill na with 0 for all columns including targets
     for i in [k for k in df_eval.columns if '_l' in k]:
         df_eval[i] = df_eval[i].fillna(0)
@@ -464,7 +474,6 @@ def run_train(args):
                 # Evaluate
                 logging.info(f'Eval convrt fold-{fold}'+'_'+tar+'...')
                 y_pred = eval(df_val, model_features, target_col, args, model_name, weight_col='sem_clicks_l')
-                y_pred = [max(i, 0) for i in y_pred]
                 df_eval['pred_convrt_'+tar].loc[val_mask] = y_pred
 
             if args.model_type in ['ordersize', 'all']:
@@ -516,60 +525,60 @@ def run_train(args):
             logging.info('\nevaluating results based on avg for the last 2 weeks for each department for '+tar)
             if args.model_type == 'all':
                 df_eval_group = df_eval.groupby('uber_dept_w1').agg({'sem_rpc_'+tar+'_w1':'mean','sem_rpc_'+tar+'_w2':'mean'}).reset_index()
-                df_eval_group['sem_pred_rpc_dept_'+tar] = (df_eval_group['sem_rpc_'+tar+'_w1']+df_eval_group['sem_rpc_'+tar+'_w2'])/2
-                df_eval = df_eval.merge(df_eval_group[['uber_dept_w1','sem_pred_rpc_dept_'+tar]], on = 'uber_dept_w1', how='left')
+                df_eval_group['pred_rpc_dept_'+tar] = (df_eval_group['sem_rpc_'+tar+'_w1']+df_eval_group['sem_rpc_'+tar+'_w2'])/2
+                df_eval = df_eval.merge(df_eval_group[['uber_dept_w1','pred_rpc_dept_'+tar]], on = 'uber_dept_w1', how='left')
                 
                 df_eval_group = df_eval.groupby('uber_dept_w1').agg({'sem_convrt_'+tar+'_w1':'mean','sem_convrt_'+tar+'_w2':'mean'}).reset_index()
-                df_eval_group['sem_pred_convrt_dept_'+tar] = (df_eval_group['sem_convrt_'+tar+'_w1']+df_eval_group['sem_convrt_'+tar+'_w2'])/2
-                df_eval = df_eval.merge(df_eval_group[['uber_dept_w1','sem_pred_convrt_dept_'+tar]], on = 'uber_dept_w1', how='left')
+                df_eval_group['pred_convrt_dept_'+tar] = (df_eval_group['sem_convrt_'+tar+'_w1']+df_eval_group['sem_convrt_'+tar+'_w2'])/2
+                df_eval = df_eval.merge(df_eval_group[['uber_dept_w1','pred_convrt_dept_'+tar]], on = 'uber_dept_w1', how='left')
                 
                 df_eval_group = df_eval.groupby('uber_dept_w1').agg({'sem_ordersize_'+tar+'_w1':'mean','sem_ordersize_'+tar+'_w2':'mean'}).reset_index()
-                df_eval_group['sem_pred_ordersize_dept_'+tar] = (df_eval_group['sem_ordersize_'+tar+'_w1']+df_eval_group['sem_ordersize_'+tar+'_w2'])/2
-                df_eval = df_eval.merge(df_eval_group[['uber_dept_w1','sem_pred_ordersize_dept_'+tar]], on = 'uber_dept_w1', how='left')
+                df_eval_group['pred_ordersize_dept_'+tar] = (df_eval_group['sem_ordersize_'+tar+'_w1']+df_eval_group['sem_ordersize_'+tar+'_w2'])/2
+                df_eval = df_eval.merge(df_eval_group[['uber_dept_w1','pred_ordersize_dept_'+tar]], on = 'uber_dept_w1', how='left')
 
                 target_cols = ['sem_convrt_'+tar+'_l', 'sem_ordersize_'+tar+'_l', 'sem_rpc_'+tar+'_l']
-                pred_cols = ['sem_pred_convrt_dept_'+tar, 'sem_pred_ordersize_dept_'+tar, 'sem_pred_rpc_dept_'+tar]
+                pred_cols = ['pred_convrt_dept_'+tar, 'pred_ordersize_dept_'+tar, 'pred_rpc_dept_'+tar]
                 weight_cols = ['sem_clicks_l', 'sem_orders_'+tar+'_l', 'sem_clicks_l']
                 use_cols = use_cols + target_cols + pred_cols + weight_cols
                 for target_col, pred_col, weight_col in zip(target_cols, pred_cols, weight_cols):
                     filter_NoNA = df_eval[target_col].notnull() & df_eval[pred_col].notnull() & df_eval[weight_col].notnull()
                     WRMSE = wrmse(df_eval[target_col].loc[filter_NoNA].values, df_eval[pred_col].loc[filter_NoNA].values, df_eval[weight_col].loc[filter_NoNA].values)
                     WMAE = wmae(df_eval[target_col].loc[filter_NoNA].values, df_eval[pred_col].loc[filter_NoNA].values, df_eval[weight_col].loc[filter_NoNA].values)
-                    logging.info(f"{pred_col.split('_')[2]} oof based on avg for the last 2 weeks for each dept WRMSE: {WRMSE: .5f}")
-                    logging.info(f"{pred_col.split('_')[2]} oof based on avg for the last 2 weeks for each dept WMAE: {WMAE: .5f}")
+                    logging.info(f"{pred_col.split('_')[1]} oof based on avg for the last 2 weeks for each dept WRMSE: {WRMSE: .5f}")
+                    logging.info(f"{pred_col.split('_')[1]} oof based on avg for the last 2 weeks for each dept WMAE: {WMAE: .5f}")
             elif args.model_type == 'convrt':
                 df_eval_group = df_eval.groupby('uber_dept_w1').agg({'sem_convrt_'+tar+'_w1':'mean','sem_convrt_'+tar+'_w2':'mean'}).reset_index()
-                df_eval_group['sem_pred_convrt_dept_'+tar] = (df_eval_group['sem_convrt_'+tar+'_w1']+df_eval_group['sem_convrt_'+tar+'_w2'])/2
-                df_eval = df_eval.merge(df_eval_group[['uber_dept_w1','sem_pred_convrt_dept_'+tar]], on = 'uber_dept_w1', how='left')
-                target_col, pred_col, weight_col = 'sem_convrt_'+tar+'_l', 'sem_pred_convrt_dept_'+tar, 'sem_clicks_l'
+                df_eval_group['pred_convrt_dept_'+tar] = (df_eval_group['sem_convrt_'+tar+'_w1']+df_eval_group['sem_convrt_'+tar+'_w2'])/2
+                df_eval = df_eval.merge(df_eval_group[['uber_dept_w1','pred_convrt_dept_'+tar]], on = 'uber_dept_w1', how='left')
+                target_col, pred_col, weight_col = 'sem_convrt_'+tar+'_l', 'pred_convrt_dept_'+tar, 'sem_clicks_l'
                 use_cols = use_cols + [target_col] + [pred_col] + [weight_col]
                 filter_NoNA = df_eval[target_col].notnull() & df_eval[pred_col].notnull() & df_eval[weight_col].notnull()
                 WRMSE = wrmse(df_eval[target_col].loc[filter_NoNA].values, df_eval[pred_col].loc[filter_NoNA].values, df_eval[weight_col].loc[filter_NoNA].values)
                 WMAE = wmae(df_eval[target_col].loc[filter_NoNA].values, df_eval[pred_col].loc[filter_NoNA].values, df_eval[weight_col].loc[filter_NoNA].values)
-                logging.info(f"{pred_col.split('_')[2]} oof based on avg for the last 2 weeks for each dept WRMSE: {WRMSE: .5f}")
-                logging.info(f"{pred_col.split('_')[2]} oof based on avg for the last 2 weeks for each dept WMAE: {WMAE: .5f}")  
+                logging.info(f"{pred_col.split('_')[1]} oof based on avg for the last 2 weeks for each dept WRMSE: {WRMSE: .5f}")
+                logging.info(f"{pred_col.split('_')[1]} oof based on avg for the last 2 weeks for each dept WMAE: {WMAE: .5f}")  
             elif args.model_type == 'ordersize':
                 df_eval_group = df_eval.groupby('uber_dept_w1').agg({'sem_ordersize_'+tar+'_w1':'mean','sem_ordersize_'+tar+'_w2':'mean'}).reset_index()
-                df_eval_group['sem_pred_ordersize_dept_'+tar] = (df_eval_group['sem_ordersize_'+tar+'_w1']+df_eval_group['sem_ordersize_'+tar+'_w2'])/2
-                df_eval = df_eval.merge(df_eval_group[['uber_dept_w1','sem_pred_ordersize_dept_'+tar]], on = 'uber_dept_w1', how='left')
-                target_col, pred_col, weight_col = 'sem_ordersize_'+tar+'_l', 'sem_pred_ordersize_dept_'+tar, 'sem_orders_'+tar+'_l'
+                df_eval_group['pred_ordersize_dept_'+tar] = (df_eval_group['sem_ordersize_'+tar+'_w1']+df_eval_group['sem_ordersize_'+tar+'_w2'])/2
+                df_eval = df_eval.merge(df_eval_group[['uber_dept_w1','pred_ordersize_dept_'+tar]], on = 'uber_dept_w1', how='left')
+                target_col, pred_col, weight_col = 'sem_ordersize_'+tar+'_l', 'pred_ordersize_dept_'+tar, 'sem_orders_'+tar+'_l'
                 use_cols = use_cols + [target_col] + [pred_col] + [weight_col]
                 filter_NoNA = df_eval[target_col].notnull() & df_eval[pred_col].notnull() & df_eval[weight_col].notnull()
                 WRMSE = wrmse(df_eval[target_col].loc[filter_NoNA].values, df_eval[pred_col].loc[filter_NoNA].values, df_eval[weight_col].loc[filter_NoNA].values)
                 WMAE = wmae(df_eval[target_col].loc[filter_NoNA].values, df_eval[pred_col].loc[filter_NoNA].values, df_eval[weight_col].loc[filter_NoNA].values)
-                logging.info(f"{pred_col.split('_')[2]} oof based on avg for the last 2 weeks for each dept WRMSE: {WRMSE: .5f}")
-                logging.info(f"{pred_col.split('_')[2]} oof based on avg for the last 2 weeks for each dept WMAE: {WMAE: .5f}")  
+                logging.info(f"{pred_col.split('_')[1]} oof based on avg for the last 2 weeks for each dept WRMSE: {WRMSE: .5f}")
+                logging.info(f"{pred_col.split('_')[1]} oof based on avg for the last 2 weeks for each dept WMAE: {WMAE: .5f}")  
             elif args.model_type == 'rpc':
                 df_eval_group = df_eval.groupby('uber_dept_w1').agg({'sem_rpc_'+tar+'_w1':'mean','sem_rpc_'+tar+'_w2':'mean'}).reset_index()
-                df_eval_group['sem_pred_rpc_dept_'+tar] = (df_eval_group['sem_rpc_'+tar+'_w1']+df_eval_group['sem_rpc_'+tar+'_w2'])/2
-                df_eval = df_eval.merge(df_eval_group[['uber_dept_w1','sem_pred_rpc_dept_'+tar]], on = 'uber_dept_w1', how='left')
-                target_col, pred_col, weight_col = 'sem_rpc_'+tar+'_l', 'sem_pred_rpc_dept_'+tar, 'sem_clicks_l'
+                df_eval_group['pred_rpc_dept_'+tar] = (df_eval_group['sem_rpc_'+tar+'_w1']+df_eval_group['sem_rpc_'+tar+'_w2'])/2
+                df_eval = df_eval.merge(df_eval_group[['uber_dept_w1','pred_rpc_dept_'+tar]], on = 'uber_dept_w1', how='left')
+                target_col, pred_col, weight_col = 'sem_rpc_'+tar+'_l', 'pred_rpc_dept_'+tar, 'sem_clicks_l'
                 use_cols = use_cols + [target_col] + [pred_col] + [weight_col]
                 filter_NoNA = df_eval[target_col].notnull() & df_eval[pred_col].notnull() & df_eval[weight_col].notnull()
                 WRMSE = wrmse(df_eval[target_col].loc[filter_NoNA].values, df_eval[pred_col].loc[filter_NoNA].values, df_eval[weight_col].loc[filter_NoNA].values)
                 WMAE = wmae(df_eval[target_col].loc[filter_NoNA].values, df_eval[pred_col].loc[filter_NoNA].values, df_eval[weight_col].loc[filter_NoNA].values)
-                logging.info(f"{pred_col.split('_')[2]} oof based on avg for the last 2 weeks for each dept WRMSE: {WRMSE: .5f}")
-                logging.info(f"{pred_col.split('_')[2]} oof based on avg for the last 2 weeks for each dept WMAE: {WMAE: .5f}")  
+                logging.info(f"{pred_col.split('_')[1]} oof based on avg for the last 2 weeks for each dept WRMSE: {WRMSE: .5f}")
+                logging.info(f"{pred_col.split('_')[1]} oof based on avg for the last 2 weeks for each dept WMAE: {WMAE: .5f}")  
         
         # get wmae for using avg rpc of the last 2 weeks to predict
         if args.baseline_model:
@@ -663,7 +672,6 @@ def run_train(args):
         
         logging.info('\n\nevaluating results based on lightgbm for '+tar)
         df_eval['pred_rpc_'+tar] = df_eval['pred_convrt_'+tar] * df_eval['pred_ordersize_'+tar]
-        df_eval['pred_rpc_'+tar] = df_eval['pred_rpc_'+tar].map(lambda x: max(0,x) if np.isnan(x)==False else x)
         if args.model_type == 'all':
             target_cols = ['sem_convrt_'+tar+'_l', 'sem_ordersize_'+tar+'_l', 'sem_rpc_'+tar+'_l', 'sem_rpc_'+tar+'_l']
             pred_cols = ['pred_convrt_'+tar, 'pred_ordersize_'+tar, 'pred_rpc_'+tar, 'pred_rpc_new_'+tar]
@@ -746,7 +754,6 @@ def run_score(args):
     #     features_set += f
     # features_set = list(set(features_set))
     df = convert_numeric(df, features_set)
-
     # text features
     if args.flag_text_features:
         start_time=time.time()
@@ -770,7 +777,6 @@ def run_score(args):
     df['confidence'] = assign_confidence(df) 
     df_to_predict = df
     targets = ['seller', 'brand'] if args.target=='all' else [args.target]
-    
     for tar in targets:
         for fold in range(5):
             if args.model_type in ['convrt', 'all']:
@@ -848,6 +854,9 @@ def main():
     parser.add_argument("--convrt_success_path", type=str, default="", help="Convrt success mark path")
     parser.add_argument("--ref_date", type=str, default="", help="reference date")
     args, _ = parser.parse_known_args()
+    
+    args.train_output_path = './train_output_path/202302120257/'
+    args.score_output_path = './score_output_path/202302120257/'
     
     # check local path
     args.local_path = args.local_path+'_'+args.mode.replace('-','_')
