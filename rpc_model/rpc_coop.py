@@ -28,11 +28,6 @@ from utils.utils import *
 warnings.filterwarnings("ignore")
 warnings.filterwarnings("ignore",category=UserWarning)
 
-def read_data_csv(filepath):
-    
-    df = pd.read_csv(filepath)
-    return(df)
-
 def read_one_partition(filepath):
     """
     load one partition and reduce memory usage.
@@ -107,9 +102,10 @@ def train(df_trn, df_val, feature_cols, target_col, lgb_params, args, model_name
     gcp_file = f'{args.train_path_gcs}{model_name}.txt'
     upload_local_to_cloud_storage(local_file, gcp_file)
 
+
 def eval(df, feature_cols, target_col, args, model_name, weight_col=None):
     try:
-        download_from_cloud_storage(f'{args.train_path_local}/{model_name}.txt', f'{args.train_path_gcs}/{model_name}.txt')
+        download_from_cloud_storage(f'{args.train_path_local}{model_name}.txt', f'{args.train_path_gcs}{model_name}.txt')
         model = lgb.Booster(model_file=(f'{args.train_path_local}/{model_name}.txt'))
     except:
         raise RuntimeError(f'{model_name} does not exist...')
@@ -199,7 +195,7 @@ def run_train(args):
 #     del df_eval3
 #     del df_eval4
     filename = args.path_gcs+'sample_data_full_feat/df_feat_all_coop_item_'+args.ref_date+'.csv'
-    df_eval = read_data_csv(filename)
+    df_eval = pd.read_csv(filename)
     # sort by the least number of null values per row and select training size
     #df_eval = df_eval.iloc[df_eval.isnull().sum(1).sort_values(ascending=True).index]
     #df_eval = df_eval.sort_values('sem_clicks_l',ascending=False)
