@@ -1,2 +1,0 @@
-2022-10-27 00:17:40 INFO     Namespace(convrt_success_path='', data_config='./config.json', flag_check_train_success=False, flag_text_features=0, flag_train_success=True, flag_train_text_transformer=0, local_path='./output', log_filename='logfile_00_17_27_10_2022.log', mode='score-5fold', model_type=None, ordersize_success_path='', ref_date='', score_output_path='', score_path='', text_feature_file='text_feature.csv', train_output_path='', train_path='')
-2022-10-27 00:17:40 INFO     score-5fold

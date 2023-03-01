@@ -117,6 +117,20 @@ def download_from_cloud_storage(local_file_path, gcp_file_path):
     bucket = storage_client.bucket(bucket_name)
     blob = storage.blob.Blob(object_path, bucket)
     blob.download_to_filename(local_file_path)    
+    
+def upload_csv_to_cloud_storage(df, gcp_file_path):
+    bucket_name, object_path = extract_gcs_path(gcp_file_path)
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    bucket.blob(gcp_file_path.replace('gs://','').replace(bucket_name+'/','')).upload_from_string(df.to_csv(index=False), 'text/csv')
+
+def delete_from_cloud_storage(gcp_file_path):
+    client = storage.Client()
+    bucket_name, object_path = extract_gcs_path(gcp_file_path)
+    bucket = storage_client.bucket(bucket_name)
+    blobs = bucket.list_blobs(prefix=object_path)
+    for blob in blobs:
+        blob.delete()
 
 def load_json(path):
     try:
