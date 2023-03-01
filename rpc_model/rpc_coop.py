@@ -620,7 +620,6 @@ def main():
     parser.add_argument("--path_gcs", type=str, default="gs://msc_fair_airflow/rpc_model/", help="GCS paths")
     parser.add_argument("--train_path_gcs", type=str, default="gs://msc_fair_airflow/rpc_model/train_path/", help="GCS paths to training data")
     parser.add_argument("--score_path_gcs", type=str, default="gs://msc_fair_airflow/rpc_model/score_path/", help="GCS paths to scoring data")
-    parser.add_argument("--output_path_gcs", type=str, default="gs://msc_fair_airflow/rpc_model/output/", help="gcs location to write output data")
     parser.add_argument("--train_path_local", type=str, default="./train_output_path/", help="local location to write train related output data")
     parser.add_argument("--score_path_local", type=str, default="./score_output_path/", help="local location to write score related output data")
     parser.add_argument("--output_path_local", type=str, default="./output/", help="Local location to write output data")
@@ -628,6 +627,9 @@ def main():
     parser.add_argument("--data_config", type=str, default="gs://msc_fair_airflow/rpc_model/config_rpc.json", help="location of data config json file")
     parser.add_argument("--ref_date", type=str, default="", help="reference date")
     args, _ = parser.parse_known_args()
+    
+    args.train_path_gcs = args.train_path_gcs+args.ref_date+'/'
+    args.score_path_gcs = args.score_path_gcs+args.ref_date+'/'
     
     # check local path
     local_root = Path(args.output_path_local)
