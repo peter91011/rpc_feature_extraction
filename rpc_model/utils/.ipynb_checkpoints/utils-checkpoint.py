@@ -125,7 +125,7 @@ def upload_csv_to_cloud_storage(df, gcp_file_path):
     bucket.blob(gcp_file_path.replace('gs://','').replace(bucket_name+'/','')).upload_from_string(df.to_csv(index=False), 'text/csv')
 
 def delete_from_cloud_storage(gcp_file_path):
-    client = storage.Client()
+    storage_client = storage.Client()
     bucket_name, object_path = extract_gcs_path(gcp_file_path)
     bucket = storage_client.bucket(bucket_name)
     blobs = bucket.list_blobs(prefix=object_path)
