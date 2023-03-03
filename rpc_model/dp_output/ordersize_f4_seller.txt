@@ -1,0 +1,149 @@
+tree
+version=v3
+num_class=1
+num_tree_per_iteration=1
+label_index=0
+max_feature_idx=169
+objective=regression
+feature_names=is_mobile sem_impressions_w2 sem_clicks_w2 sem_adspend_w2 sem_qty_w2 sem_gmv_revenue_adjustment_seller_w2 sem_orders_seller_w2 sem_margin_seller_w2 sem_ctr_w2 sem_cpc_w2 sem_rpc_seller_w2 sem_roas_seller_w2 sem_convrt_seller_w2 sem_ordersize_seller_w2 sem_mpc_seller_w2 sem_mpo_seller_w2 sem_impressions_w1 sem_clicks_w1 sem_adspend_w1 sem_qty_w1 sem_gmv_revenue_adjustment_seller_w1 sem_orders_seller_w1 sem_margin_seller_w1 sem_ctr_w1 sem_cpc_w1 sem_rpc_seller_w1 sem_roas_seller_w1 sem_convrt_seller_w1 sem_ordersize_seller_w1 sem_mpc_seller_w1 sem_mpo_seller_w1 sem_impressions_v2 sem_clicks_v2 sem_adspend_v2 sem_qty_v2 sem_gmv_revenue_adjustment_seller_v2 sem_orders_seller_v2 sem_margin_seller_v2 sem_ctr_v2 sem_cpc_v2 sem_rpc_seller_v2 sem_roas_seller_v2 sem_convrt_seller_v2 sem_ordersize_seller_v2 sem_mpc_seller_v2 sem_mpo_seller_v2 sem_impressions_v3 sem_clicks_v3 sem_adspend_v3 sem_qty_v3 sem_gmv_revenue_adjustment_seller_v3 sem_orders_seller_v3 sem_margin_seller_v3 sem_ctr_v3 sem_cpc_v3 sem_rpc_seller_v3 sem_roas_seller_v3 sem_convrt_seller_v3 sem_ordersize_seller_v3 sem_mpc_seller_v3 sem_mpo_seller_v3 sem_impressions_v4 sem_clicks_v4 sem_adspend_v4 sem_qty_v4 sem_gmv_revenue_adjustment_seller_v4 sem_orders_seller_v4 sem_margin_seller_v4 sem_ctr_v4 sem_cpc_v4 sem_rpc_seller_v4 sem_roas_seller_v4 sem_convrt_seller_v4 sem_ordersize_seller_v4 sem_mpc_seller_v4 sem_mpo_seller_v4 sem_impressions_v5 sem_clicks_v5 sem_adspend_v5 sem_qty_v5 sem_gmv_revenue_adjustment_seller_v5 sem_orders_seller_v5 sem_margin_seller_v5 sem_ctr_v5 sem_cpc_v5 sem_rpc_seller_v5 sem_roas_seller_v5 sem_convrt_seller_v5 sem_ordersize_seller_v5 sem_mpc_seller_v5 sem_mpo_seller_v5 sem_impressions_v9 sem_clicks_v9 sem_adspend_v9 sem_qty_v9 sem_gmv_revenue_adjustment_seller_v9 sem_orders_seller_v9 sem_margin_seller_v9 sem_ctr_v9 sem_cpc_v9 sem_rpc_seller_v9 sem_roas_seller_v9 sem_convrt_seller_v9 sem_ordersize_seller_v9 sem_mpc_seller_v9 sem_mpo_seller_v9 sem_impressions_v12 sem_clicks_v12 sem_adspend_v12 sem_qty_v12 sem_gmv_revenue_adjustment_seller_v12 sem_orders_seller_v12 sem_margin_seller_v12 sem_ctr_v12 sem_cpc_v12 sem_rpc_seller_v12 sem_roas_seller_v12 sem_convrt_seller_v12 sem_ordersize_seller_v12 sem_mpc_seller_v12 sem_mpo_seller_v12 sem_impressions_v18 sem_clicks_v18 sem_adspend_v18 sem_qty_v18 sem_gmv_revenue_adjustment_seller_v18 sem_orders_seller_v18 sem_margin_seller_v18 sem_ctr_v18 sem_cpc_v18 sem_rpc_seller_v18 sem_roas_seller_v18 sem_convrt_seller_v18 sem_ordersize_seller_v18 sem_mpc_seller_v18 sem_mpo_seller_v18 uber_curr_item_price_w1 uber_num_appr_reviews_w1 uber_avg_overall_rating_w1 uber_price_change_ratio_w1 uber_price_change_value_w1 uber_avg_margin_w1 site_total_page_views_w2 site_total_add_to_carts_w2 site_total_orders_w2 site_total_revenue_w2 site_atcpv_w2 site_convrt_w2 site_rpv_w2 site_mpv_w2 site_total_page_views_w1 site_total_add_to_carts_w1 site_total_orders_w1 site_total_revenue_w1 site_atcpv_w1 site_convrt_w1 site_rpv_w1 site_mpv_w1 bc_bounces_w2 bc_visits_w2 bc_bounce_rate_w2 bc_sem_bounces_w2 bc_sem_visits_w2 bc_sem_bounce_rate_w2 bc_bounces_w1 bc_visits_w1 bc_bounce_rate_w1 bc_sem_bounces_w1 bc_sem_visits_w1 bc_sem_bounce_rate_w1
+feature_infos=[0:1] [0:805.78571428571422] [0:7.9285714285714288] [0:7.6107142857142867] [-0.071428571428571425:3.5714285714285721] [0:12.7857143] [0:0.14285709999999999] [-280.18428571428569:12.785714285714285] [0.001865671641791045:2] [0.01:0.95990990990990999] [0:179] [0:17900] [0:1.25] [0.17000000000000001:179] [-1307.5266666666666:179] [-50.700059988002423:179] [0:856] [0:9.1428571428571423] [0:8.8028571428571443] [-2.1428571428571428:4.8571428571428568] [0:25.571428999999998] [0:0.14285699999999998] [-560.36857142857139:25.571428571428569] [0.0023696682464454982:2] [0.01:0.96281249999999996] [0:179] [0:17900] [0:1] none [-3922.5799999999999:179] none [0:863.35714285714289] [0:8.5714285714285712] [0:3.2092857142857145] [-0.071428571428571425:4.2857142857142856] [0:9.2821429000000002] [0:0.14285709999999999] [-19.256428571428565:9.2821428571428548] [0.001865671641791045:2] [0.01:0.9559574468085108] [0:101.98999999999999] [0:4095] [0:2] [4.3717982571960015:129.94999999999999] [-269.58999999999997:101.98999999999999] [-979.39135654261702:129.94999999999999] [0:1370.0714285714287] [0:8.7857142857142865] [0:3.0157142857142856] [-4.5714285714285712:2.9285714285714284] [0:8.258571400000001] [0:0.28571429999999998] [-19.256428571428565:8.1657142857142855] [0.0018247223815233825:2] [0.01:0.96190476190476182] [0:54.469999999999999] [0:4095] [0:2] [4.3717982571960015:89.002769315979023] [-134.79499999999999:54.469999999999999] [-155.82999999999996:59] [0:2101.7857142857142] [0:21.928571428571423] [0:6.1007142857142851] [-4.5714285714285712:8.0714285714285712] [0:23.058707100000003] [0:1.2347928999999995] [-41.420714285714283:25.250135714285715] [0.0015278838808250573:2] [0.01:1.1599999999999999] [0:54.469999999999999] [0:320.41176470588232] [0:2] [6.9756552850590001:89] [-36.979999999999997:54.469999999999999] [-1108.7509750975098:79.989999999999995] [0:2633] [0:32.285714285714285] [0:9.8628571428571448] [-0.14285714285714285:10.142857142857142] [0:46.492492900000002] [0:2.5576286000000001] [-30.289999999999999:31.710349999999998] [0.0014816503305219964:2] [0.01:1.1000000000000001] [0:106.495] [0:315.78947368421052] [0:1.2857000000000001] [3.8604333327260001:212.99000000000001] [-36.979999999999997:106.495] [-167.45999999999995:212.99000000000001] [0:5913.3333333333321] [0:164.75] [0:45.417499999999997] [-1:17.166666666666668] [0:38.352708300000003] [0:0.52777499999999999] [-48.48416666666666:38.352708333333332] [0.0046695585608573613:2] [0.01:4.0449999999999999] [0:230.11625000000001] [0:999] [0:1] [4.7800000000000002:525.98000000000002] [-185.41999999999999:230.11625000000001] [-581.80999999999995:525.98000000000002] [0.071428571428571425:461.85714285714278] [0.071428571428571425:9.8571428571428577] [0.00071428571428571429:3.7799999999999998] [-0.071428571428571425:3.9285714285714288] [0:47.785714300000002] [0:0.14285709999999999] [-14.205:47.785714285714292] [0.0025839793281653748:2] [0.01:1.0171428571428571] [0:223] [0:13497] [0:1] [6.9695813953489996:669] [-33.420000000000002:223] [-10.249787505312359:669] [0.071428571428571425:2711.5] [0.071428571428571425:13.928571428571427] [0.00071428571428571429:47.362857142857145] [0:4.1428571428571432] [0:3.2850000000000001] [0:0.071428600000000009] [-7.9428571428571431:4.9699999999999998] [0.0051368509786359684:2] [0.01:3.4004102564102565] [0:25.600000000000001] [0:480] [0:0.5] none [-111.2:25.600000000000001] none [0.11:9159] [0:0] [0:5] [0.99999999999999978:1.0000000000000002] [-4.5474735088646412e-13:9.0949470177292824e-13] [0.11:9159] [1:80329] [1:6609] [1:33950] [0:425027.25000000111] [0.00067888662593346919:1] [0.00090090090090090081:5.7692307692307674] [0:47.242454453441326] none [1:43133] [1:3467] [1:18964] [0:215234.26000000039] [0.00024563989191844754:1] [0.00024563989191844754:5.1551724137931041] [0:63.397500000000001] none [0:5645] [1:15819] [0:1] [0:52] [0:184] [0:1] [0:4804] [1:11552] [0:1] [0:29] [0:103] [0:1]
+tree_sizes=221
+
+Tree=0
+num_leaves=1
+num_cat=0
+split_feature=
+split_gain=
+threshold=
+decision_type=
+left_child=
+right_child=
+leaf_value=0
+leaf_weight=
+leaf_count=
+internal_value=
+internal_weight=
+internal_count=
+is_linear=0
+shrinkage=1
+
+
+end of trees
+
+feature_importances:
+
+parameters:
+[boosting: gbdt]
+[objective: regression]
+[metric: rmse]
+[tree_learner: serial]
+[device_type: cpu]
+[data: ]
+[valid: ]
+[num_iterations: 4000]
+[learning_rate: 0.02]
+[num_leaves: 63]
+[num_threads: -1]
+[deterministic: 0]
+[force_col_wise: 0]
+[force_row_wise: 0]
+[histogram_pool_size: -1]
+[max_depth: 10]
+[min_data_in_leaf: 20]
+[min_sum_hessian_in_leaf: 0.001]
+[bagging_fraction: 0.9]
+[pos_bagging_fraction: 1]
+[neg_bagging_fraction: 1]
+[bagging_freq: 10]
+[bagging_seed: 400]
+[feature_fraction: 0.33]
+[feature_fraction_bynode: 1]
+[feature_fraction_seed: 30056]
+[extra_trees: 0]
+[extra_seed: 12879]
+[early_stopping_round: 200]
+[first_metric_only: 0]
+[max_delta_step: 0]
+[lambda_l1: 0]
+[lambda_l2: 0]
+[linear_lambda: 0]
+[min_gain_to_split: 0]
+[drop_rate: 0.1]
+[max_drop: 50]
+[skip_drop: 0.5]
+[xgboost_dart_mode: 0]
+[uniform_drop: 0]
+[drop_seed: 17869]
+[top_rate: 0.2]
+[other_rate: 0.1]
+[min_data_per_group: 100]
+[max_cat_threshold: 32]
+[cat_l2: 10]
+[cat_smooth: 10]
+[max_cat_to_onehot: 4]
+[top_k: 20]
+[monotone_constraints: ]
+[monotone_constraints_method: basic]
+[monotone_penalty: 0]
+[feature_contri: ]
+[forcedsplits_filename: ]
+[refit_decay_rate: 0.9]
+[cegb_tradeoff: 1]
+[cegb_penalty_split: 0]
+[cegb_penalty_feature_lazy: ]
+[cegb_penalty_feature_coupled: ]
+[path_smooth: 0]
+[interaction_constraints: ]
+[verbosity: -1]
+[saved_feature_importance_type: 0]
+[linear_tree: 0]
+[max_bin: 255]
+[max_bin_by_feature: ]
+[min_data_in_bin: 3]
+[bin_construct_sample_cnt: 200000]
+[data_random_seed: 175]
+[is_enable_sparse: 1]
+[enable_bundle: 1]
+[use_missing: 1]
+[zero_as_missing: 0]
+[feature_pre_filter: 1]
+[pre_partition: 0]
+[two_round: 0]
+[header: 0]
+[label_column: ]
+[weight_column: ]
+[group_column: ]
+[ignore_column: ]
+[categorical_feature: ]
+[forcedbins_filename: ]
+[precise_float_parser: 0]
+[objective_seed: 16083]
+[num_class: 1]
+[is_unbalance: 0]
+[scale_pos_weight: 1]
+[sigmoid: 1]
+[boost_from_average: 1]
+[reg_sqrt: 0]
+[alpha: 0.9]
+[fair_c: 1]
+[poisson_max_delta_step: 0.7]
+[tweedie_variance_power: 1.5]
+[lambdarank_truncation_level: 30]
+[lambdarank_norm: 1]
+[label_gain: ]
+[eval_at: ]
+[multi_error_top_k: 1]
+[auc_mu_weights: ]
+[num_machines: 1]
+[local_listen_port: 12400]
+[time_out: 120]
+[machine_list_filename: ]
+[machines: ]
+[gpu_platform_id: -1]
+[gpu_device_id: -1]
+[gpu_use_dp: 0]
+[num_gpu: 1]
+
+end of parameters
+
+pandas_categorical:[]
