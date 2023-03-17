@@ -1,0 +1,3 @@
+2023-03-04 06:58:26 INFO     Namespace(baseline_model=True, data_config='gs://msc_fair_airflow/rpc_model/config_rpc.json', log_filename='rpc_log_2023_03_04_06_58.log', mode='train-5fold', model_type='all', output_path_local='./output/', path_gcs='gs://msc_fair_airflow/rpc_model/', ref_date='2023-01-16', score_path_gcs='gs://msc_fair_airflow/rpc_model/score_path/2023-01-16/', score_path_local='./score_output_path/', target='all', train_path_gcs='gs://msc_fair_airflow/rpc_model/train_path/2023-01-16/', train_path_local='./train_output_path/')
+2023-03-04 06:58:26 INFO     train-5fold
+2023-03-04 06:58:26 INFO     Prepare training data...

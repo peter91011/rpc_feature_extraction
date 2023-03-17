@@ -1,0 +1,400 @@
+2023-03-04 04:49:03 INFO     Namespace(baseline_model=True, data_config='gs://msc_fair_airflow/rpc_model/config_rpc.json', log_filename='rpc_log_2023_03_04_04_49.log', mode='train-5fold', model_type='all', output_path_local='./output/', path_gcs='gs://msc_fair_airflow/rpc_model/', ref_date='2023-01-16', score_path_gcs='gs://msc_fair_airflow/rpc_model/score_path/2023-01-16/', score_path_local='./score_output_path/', target='all', train_path_gcs='gs://msc_fair_airflow/rpc_model/train_path/2023-01-16/', train_path_local='./train_output_path/')
+2023-03-04 04:49:03 INFO     train-5fold
+2023-03-04 04:49:03 INFO     Prepare training data...
+2023-03-04 04:53:19 INFO     training data size: 500000
+2023-03-04 04:53:19 INFO     eval data size: 500000
+2023-03-04 04:53:19 INFO     training data prepared...
+2023-03-04 04:53:23 INFO     --------------------
+2023-03-04 04:53:23 INFO     Train convrt model fold-0_seller...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 0.0165049	valid_1's rmse: 0.0296405
+[200]	training's rmse: 0.0122884	valid_1's rmse: 0.0297534
+Early stopping, best iteration is:
+[63]	training's rmse: 0.0192264	valid_1's rmse: 0.0293315
+2023-03-04 04:53:37 INFO     Eval convrt fold-0_seller...
+2023-03-04 04:53:38 INFO     WRMSE:  0.02933
+2023-03-04 04:53:38 INFO     WMAE:  0.01554
+2023-03-04 04:53:38 INFO     --------------------
+2023-03-04 04:53:38 INFO     Train ordersize model fold-0_seller...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 9.24564	valid_1's rmse: 33.0569
+[200]	training's rmse: 4.60519	valid_1's rmse: 36.8871
+Early stopping, best iteration is:
+[18]	training's rmse: 23.3578	valid_1's rmse: 26.3627
+2023-03-04 04:53:50 INFO     Eval ordersize fold-0_seller...
+2023-03-04 04:53:51 INFO     WRMSE:  26.36267
+2023-03-04 04:53:51 INFO     WMAE:  13.12999
+2023-03-04 04:53:51 INFO     --------------------
+2023-03-04 04:53:51 INFO     Train rpc model fold-0_seller...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 2.05483	valid_1's rmse: 2.95652
+[200]	training's rmse: 1.73861	valid_1's rmse: 2.9824
+Early stopping, best iteration is:
+[30]	training's rmse: 2.59469	valid_1's rmse: 2.92156
+2023-03-04 04:54:03 INFO     Eval rpc fold-0_seller...
+2023-03-04 04:54:04 INFO     WRMSE:  2.92156
+2023-03-04 04:54:04 INFO     WMAE:  0.51500
+2023-03-04 04:54:04 INFO     --------------------
+2023-03-04 04:54:04 INFO     Train convrt model fold-1_seller...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 0.0157185	valid_1's rmse: 0.0316877
+[200]	training's rmse: 0.0113575	valid_1's rmse: 0.0317845
+Early stopping, best iteration is:
+[88]	training's rmse: 0.0167648	valid_1's rmse: 0.0315293
+2023-03-04 04:54:19 INFO     Eval convrt fold-1_seller...
+2023-03-04 04:54:20 INFO     WRMSE:  0.03153
+2023-03-04 04:54:20 INFO     WMAE:  0.01447
+2023-03-04 04:54:20 INFO     --------------------
+2023-03-04 04:54:20 INFO     Train ordersize model fold-1_seller...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 9.91426	valid_1's rmse: 38.2576
+[200]	training's rmse: 4.95316	valid_1's rmse: 43.2577
+Early stopping, best iteration is:
+[7]	training's rmse: 27.2634	valid_1's rmse: 28.2105
+2023-03-04 04:54:31 INFO     Eval ordersize fold-1_seller...
+2023-03-04 04:54:32 INFO     WRMSE:  28.21049
+2023-03-04 04:54:32 INFO     WMAE:  13.69764
+2023-03-04 04:54:32 INFO     --------------------
+2023-03-04 04:54:32 INFO     Train rpc model fold-1_seller...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 2.00699	valid_1's rmse: 2.58436
+[200]	training's rmse: 1.64872	valid_1's rmse: 2.64541
+Early stopping, best iteration is:
+[5]	training's rmse: 2.90161	valid_1's rmse: 2.43939
+2023-03-04 04:54:44 INFO     Eval rpc fold-1_seller...
+2023-03-04 04:54:45 INFO     WRMSE:  2.43939
+2023-03-04 04:54:45 INFO     WMAE:  0.49420
+2023-03-04 04:54:45 INFO     --------------------
+2023-03-04 04:54:45 INFO     Train convrt model fold-2_seller...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 0.0157832	valid_1's rmse: 0.0280849
+[200]	training's rmse: 0.0119056	valid_1's rmse: 0.0281262
+[300]	training's rmse: 0.00982463	valid_1's rmse: 0.0282569
+[400]	training's rmse: 0.00829997	valid_1's rmse: 0.0277571
+[500]	training's rmse: 0.00708622	valid_1's rmse: 0.0277411
+[600]	training's rmse: 0.00618924	valid_1's rmse: 0.0277819
+Early stopping, best iteration is:
+[476]	training's rmse: 0.00735944	valid_1's rmse: 0.0277061
+2023-03-04 04:55:13 INFO     Eval convrt fold-2_seller...
+2023-03-04 04:55:15 INFO     WRMSE:  0.02770
+2023-03-04 04:55:15 INFO     WMAE:  0.01293
+2023-03-04 04:55:15 INFO     --------------------
+2023-03-04 04:55:15 INFO     Train ordersize model fold-2_seller...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 10.011	valid_1's rmse: 50.1955
+[200]	training's rmse: 5.76781	valid_1's rmse: 55.1548
+Early stopping, best iteration is:
+[3]	training's rmse: 29.4822	valid_1's rmse: 23.3686
+2023-03-04 04:55:30 INFO     Eval ordersize fold-2_seller...
+2023-03-04 04:55:31 INFO     WRMSE:  23.36860
+2023-03-04 04:55:31 INFO     WMAE:  12.42381
+2023-03-04 04:55:31 INFO     --------------------
+2023-03-04 04:55:31 INFO     Train rpc model fold-2_seller...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 2.07245	valid_1's rmse: 2.98909
+[200]	training's rmse: 1.70469	valid_1's rmse: 3.04417
+Early stopping, best iteration is:
+[19]	training's rmse: 2.65914	valid_1's rmse: 2.92021
+2023-03-04 04:55:44 INFO     Eval rpc fold-2_seller...
+2023-03-04 04:55:45 INFO     WRMSE:  2.92021
+2023-03-04 04:55:45 INFO     WMAE:  0.47991
+2023-03-04 04:55:45 INFO     --------------------
+2023-03-04 04:55:45 INFO     Train convrt model fold-3_seller...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 0.0162593	valid_1's rmse: 0.0271711
+[200]	training's rmse: 0.0123882	valid_1's rmse: 0.0277124
+Early stopping, best iteration is:
+[26]	training's rmse: 0.0247774	valid_1's rmse: 0.0265848
+2023-03-04 04:55:57 INFO     Eval convrt fold-3_seller...
+2023-03-04 04:55:58 INFO     WRMSE:  0.02658
+2023-03-04 04:55:58 INFO     WMAE:  0.01393
+2023-03-04 04:55:58 INFO     --------------------
+2023-03-04 04:55:58 INFO     Train ordersize model fold-3_seller...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 9.11991	valid_1's rmse: 70.6
+[200]	training's rmse: 4.59662	valid_1's rmse: 83.1364
+Early stopping, best iteration is:
+[8]	training's rmse: 24.7975	valid_1's rmse: 36.9187
+2023-03-04 04:56:10 INFO     Eval ordersize fold-3_seller...
+2023-03-04 04:56:11 INFO     WRMSE:  36.91868
+2023-03-04 04:56:11 INFO     WMAE:  18.79792
+2023-03-04 04:56:11 INFO     --------------------
+2023-03-04 04:56:11 INFO     Train rpc model fold-3_seller...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 1.78857	valid_1's rmse: 3.27156
+[200]	training's rmse: 1.50376	valid_1's rmse: 3.2833
+Early stopping, best iteration is:
+[70]	training's rmse: 2.00201	valid_1's rmse: 3.25481
+2023-03-04 04:56:25 INFO     Eval rpc fold-3_seller...
+2023-03-04 04:56:26 INFO     WRMSE:  3.25480
+2023-03-04 04:56:26 INFO     WMAE:  0.62607
+2023-03-04 04:56:26 INFO     --------------------
+2023-03-04 04:56:26 INFO     Train convrt model fold-4_seller...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 0.0151844	valid_1's rmse: 0.0320633
+[200]	training's rmse: 0.0114607	valid_1's rmse: 0.0325073
+Early stopping, best iteration is:
+[38]	training's rmse: 0.0216419	valid_1's rmse: 0.0319078
+2023-03-04 04:56:38 INFO     Eval convrt fold-4_seller...
+2023-03-04 04:56:39 INFO     WRMSE:  0.03191
+2023-03-04 04:56:39 INFO     WMAE:  0.01703
+2023-03-04 04:56:39 INFO     --------------------
+2023-03-04 04:56:39 INFO     Train ordersize model fold-4_seller...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 10.814	valid_1's rmse: 42.4499
+[200]	training's rmse: 5.80787	valid_1's rmse: 51.4356
+Early stopping, best iteration is:
+[1]	training's rmse: 29.23	valid_1's rmse: 29.6573
+2023-03-04 04:56:50 INFO     Eval ordersize fold-4_seller...
+2023-03-04 04:56:50 INFO     WRMSE:  29.65733
+2023-03-04 04:56:50 INFO     WMAE:  14.27060
+2023-03-04 04:56:50 INFO     --------------------
+2023-03-04 04:56:50 INFO     Train rpc model fold-4_seller...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 2.10355	valid_1's rmse: 2.79961
+[200]	training's rmse: 1.78208	valid_1's rmse: 2.82775
+Early stopping, best iteration is:
+[1]	training's rmse: 2.88498	valid_1's rmse: 2.77143
+2023-03-04 04:57:01 INFO     Eval rpc fold-4_seller...
+2023-03-04 04:57:02 INFO     WRMSE:  2.77143
+2023-03-04 04:57:02 INFO     WMAE:  0.48712
+2023-03-04 04:57:02 INFO     --------------------
+2023-03-04 04:57:02 INFO     Train convrt model fold-0_brand...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 0.0124485	valid_1's rmse: 0.0161083
+[200]	training's rmse: 0.0103546	valid_1's rmse: 0.0163294
+Early stopping, best iteration is:
+[70]	training's rmse: 0.0135293	valid_1's rmse: 0.0160621
+2023-03-04 04:57:16 INFO     Eval convrt fold-0_brand...
+2023-03-04 04:57:17 INFO     WRMSE:  0.01606
+2023-03-04 04:57:17 INFO     WMAE:  0.00676
+2023-03-04 04:57:17 INFO     --------------------
+2023-03-04 04:57:17 INFO     Train ordersize model fold-0_brand...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 16.9417	valid_1's rmse: 48.4768
+[200]	training's rmse: 6.44535	valid_1's rmse: 50.3679
+Early stopping, best iteration is:
+[80]	training's rmse: 21.8789	valid_1's rmse: 48.2989
+2023-03-04 04:57:32 INFO     Eval ordersize fold-0_brand...
+2023-03-04 04:57:33 INFO     WRMSE:  48.29894
+2023-03-04 04:57:33 INFO     WMAE:  27.47304
+2023-03-04 04:57:33 INFO     --------------------
+2023-03-04 04:57:33 INFO     Train rpc model fold-0_brand...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 2.62409	valid_1's rmse: 3.46666
+[200]	training's rmse: 2.17174	valid_1's rmse: 3.50803
+Early stopping, best iteration is:
+[8]	training's rmse: 3.83283	valid_1's rmse: 3.30778
+2023-03-04 04:57:45 INFO     Eval rpc fold-0_brand...
+2023-03-04 04:57:46 INFO     WRMSE:  3.30778
+2023-03-04 04:57:46 INFO     WMAE:  0.64469
+2023-03-04 04:57:46 INFO     --------------------
+2023-03-04 04:57:46 INFO     Train convrt model fold-1_brand...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 0.0121839	valid_1's rmse: 0.0184415
+[200]	training's rmse: 0.0102967	valid_1's rmse: 0.0190467
+Early stopping, best iteration is:
+[40]	training's rmse: 0.0145187	valid_1's rmse: 0.0182073
+2023-03-04 04:57:58 INFO     Eval convrt fold-1_brand...
+2023-03-04 04:57:59 INFO     WRMSE:  0.01821
+2023-03-04 04:57:59 INFO     WMAE:  0.00638
+2023-03-04 04:57:59 INFO     --------------------
+2023-03-04 04:57:59 INFO     Train ordersize model fold-1_brand...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 17.2521	valid_1's rmse: 39.3252
+[200]	training's rmse: 6.37525	valid_1's rmse: 36.5677
+[300]	training's rmse: 3.29003	valid_1's rmse: 36.3413
+[400]	training's rmse: 1.89298	valid_1's rmse: 36.3257
+[500]	training's rmse: 1.0746	valid_1's rmse: 36.3481
+Early stopping, best iteration is:
+[352]	training's rmse: 2.39592	valid_1's rmse: 36.2987
+2023-03-04 04:58:25 INFO     Eval ordersize fold-1_brand...
+2023-03-04 04:58:27 INFO     WRMSE:  36.29870
+2023-03-04 04:58:27 INFO     WMAE:  18.48985
+2023-03-04 04:58:27 INFO     --------------------
+2023-03-04 04:58:27 INFO     Train rpc model fold-1_brand...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 2.69032	valid_1's rmse: 3.11042
+[200]	training's rmse: 2.23211	valid_1's rmse: 3.3034
+Early stopping, best iteration is:
+[3]	training's rmse: 4.04516	valid_1's rmse: 2.57447
+2023-03-04 04:58:40 INFO     Eval rpc fold-1_brand...
+2023-03-04 04:58:41 INFO     WRMSE:  2.57447
+2023-03-04 04:58:41 INFO     WMAE:  0.62751
+2023-03-04 04:58:41 INFO     --------------------
+2023-03-04 04:58:41 INFO     Train convrt model fold-2_brand...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 0.0121631	valid_1's rmse: 0.0171673
+[200]	training's rmse: 0.0100853	valid_1's rmse: 0.0174074
+Early stopping, best iteration is:
+[51]	training's rmse: 0.0140758	valid_1's rmse: 0.0170245
+2023-03-04 04:58:53 INFO     Eval convrt fold-2_brand...
+2023-03-04 04:58:54 INFO     WRMSE:  0.01702
+2023-03-04 04:58:54 INFO     WMAE:  0.00666
+2023-03-04 04:58:54 INFO     --------------------
+2023-03-04 04:58:54 INFO     Train ordersize model fold-2_brand...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 17.1391	valid_1's rmse: 61.0801
+[200]	training's rmse: 6.53123	valid_1's rmse: 59.8247
+[300]	training's rmse: 3.29441	valid_1's rmse: 60.2318
+Early stopping, best iteration is:
+[194]	training's rmse: 6.7675	valid_1's rmse: 59.7975
+2023-03-04 04:59:14 INFO     Eval ordersize fold-2_brand...
+2023-03-04 04:59:15 INFO     WRMSE:  59.79749
+2023-03-04 04:59:15 INFO     WMAE:  29.03042
+2023-03-04 04:59:15 INFO     --------------------
+2023-03-04 04:59:15 INFO     Train rpc model fold-2_brand...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 2.32316	valid_1's rmse: 6.06642
+[200]	training's rmse: 1.96387	valid_1's rmse: 6.08522
+Early stopping, best iteration is:
+[35]	training's rmse: 2.7768	valid_1's rmse: 6.04865
+2023-03-04 04:59:27 INFO     Eval rpc fold-2_brand...
+2023-03-04 04:59:28 INFO     WRMSE:  6.04865
+2023-03-04 04:59:28 INFO     WMAE:  0.63901
+2023-03-04 04:59:28 INFO     --------------------
+2023-03-04 04:59:28 INFO     Train convrt model fold-3_brand...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 0.0121068	valid_1's rmse: 0.0186269
+[200]	training's rmse: 0.0100936	valid_1's rmse: 0.0192243
+Early stopping, best iteration is:
+[30]	training's rmse: 0.0151307	valid_1's rmse: 0.018506
+2023-03-04 04:59:40 INFO     Eval convrt fold-3_brand...
+2023-03-04 04:59:41 INFO     WRMSE:  0.01851
+2023-03-04 04:59:41 INFO     WMAE:  0.00704
+2023-03-04 04:59:41 INFO     --------------------
+2023-03-04 04:59:41 INFO     Train ordersize model fold-3_brand...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 17.0514	valid_1's rmse: 48.0637
+[200]	training's rmse: 6.41181	valid_1's rmse: 46.6909
+[300]	training's rmse: 3.17084	valid_1's rmse: 46.5477
+[400]	training's rmse: 1.88334	valid_1's rmse: 46.3888
+[500]	training's rmse: 1.1915	valid_1's rmse: 46.381
+[600]	training's rmse: 0.75117	valid_1's rmse: 46.3736
+[700]	training's rmse: 0.504558	valid_1's rmse: 46.3669
+[800]	training's rmse: 0.346186	valid_1's rmse: 46.3805
+Early stopping, best iteration is:
+[666]	training's rmse: 0.569041	valid_1's rmse: 46.3602
+2023-03-04 05:00:32 INFO     Eval ordersize fold-3_brand...
+2023-03-04 05:00:35 INFO     WRMSE:  46.36016
+2023-03-04 05:00:35 INFO     WMAE:  23.79680
+2023-03-04 05:00:35 INFO     --------------------
+2023-03-04 05:00:35 INFO     Train rpc model fold-3_brand...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 2.62688	valid_1's rmse: 3.65961
+[200]	training's rmse: 2.17682	valid_1's rmse: 3.7623
+Early stopping, best iteration is:
+[12]	training's rmse: 3.64076	valid_1's rmse: 3.51355
+2023-03-04 05:00:46 INFO     Eval rpc fold-3_brand...
+2023-03-04 05:00:47 INFO     WRMSE:  3.51355
+2023-03-04 05:00:47 INFO     WMAE:  0.62607
+2023-03-04 05:00:47 INFO     --------------------
+2023-03-04 05:00:47 INFO     Train convrt model fold-4_brand...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 0.0124708	valid_1's rmse: 0.0161538
+[200]	training's rmse: 0.0103014	valid_1's rmse: 0.0164774
+[300]	training's rmse: 0.00896628	valid_1's rmse: 0.0165274
+Early stopping, best iteration is:
+[100]	training's rmse: 0.0124708	valid_1's rmse: 0.0161538
+2023-03-04 05:01:02 INFO     Eval convrt fold-4_brand...
+2023-03-04 05:01:03 INFO     WRMSE:  0.01615
+2023-03-04 05:01:03 INFO     WMAE:  0.00573
+2023-03-04 05:01:03 INFO     --------------------
+2023-03-04 05:01:03 INFO     Train ordersize model fold-4_brand...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 16.1838	valid_1's rmse: 40.7437
+[200]	training's rmse: 5.52756	valid_1's rmse: 40.0075
+[300]	training's rmse: 2.78853	valid_1's rmse: 40.1046
+Early stopping, best iteration is:
+[162]	training's rmse: 7.91361	valid_1's rmse: 39.9022
+2023-03-04 05:01:22 INFO     Eval ordersize fold-4_brand...
+2023-03-04 05:01:23 INFO     WRMSE:  39.90220
+2023-03-04 05:01:23 INFO     WMAE:  23.54670
+2023-03-04 05:01:23 INFO     --------------------
+2023-03-04 05:01:23 INFO     Train rpc model fold-4_brand...
+Training until validation scores don't improve for 200 rounds
+[100]	training's rmse: 2.64347	valid_1's rmse: 3.36008
+[200]	training's rmse: 2.21488	valid_1's rmse: 3.39278
+Early stopping, best iteration is:
+[7]	training's rmse: 3.88627	valid_1's rmse: 3.30423
+2023-03-04 05:01:34 INFO     Eval rpc fold-4_brand...
+2023-03-04 05:01:35 INFO     WRMSE:  3.30423
+2023-03-04 05:01:35 INFO     WMAE:  0.60736
+2023-03-04 05:01:35 INFO     
+
+
+Evaluating results for seller
+2023-03-04 05:01:35 INFO     
+evaluating results based on avg for the last 2 weeks for each department for seller
+2023-03-04 05:01:41 INFO     convrt oof based on avg for the last 2 weeks for each dept WRMSE:  0.24577
+2023-03-04 05:01:41 INFO     convrt oof based on avg for the last 2 weeks for each dept WMAE:  0.03589
+2023-03-04 05:01:41 INFO     ordersize oof based on avg for the last 2 weeks for each dept WRMSE:  74.58195
+2023-03-04 05:01:41 INFO     ordersize oof based on avg for the last 2 weeks for each dept WMAE:  38.08743
+2023-03-04 05:01:41 INFO     rpc oof based on avg for the last 2 weeks for each dept WRMSE:  3.63320
+2023-03-04 05:01:41 INFO     rpc oof based on avg for the last 2 weeks for each dept WMAE:  0.69380
+2023-03-04 05:01:41 INFO     
+evaluating results based on avg for the last 2 weeks for seller
+2023-03-04 05:01:41 INFO     convrt oof based on avg for the last 2 weeks WRMSE:  0.32899
+2023-03-04 05:01:41 INFO     convrt oof based on avg for the last 2 weeks WMAE:  0.03933
+2023-03-04 05:01:41 INFO     ordersize oof based on avg for the last 2 weeks WRMSE:  70.88584
+2023-03-04 05:01:41 INFO     ordersize oof based on avg for the last 2 weeks WMAE:  22.41403
+2023-03-04 05:01:41 INFO     rpc oof based on avg for the last 2 weeks WRMSE:  4.10786
+2023-03-04 05:01:41 INFO     rpc oof based on avg for the last 2 weeks WMAE:  0.52848
+2023-03-04 05:01:41 INFO     
+evaluating results based on avg for seller
+2023-03-04 05:01:41 INFO     convrt oof based on avg WRMSE:  0.21786
+2023-03-04 05:01:41 INFO     convrt oof based on avg WMAE:  0.02306
+2023-03-04 05:01:41 INFO     ordersize oof based on avg WRMSE:  48.34931
+2023-03-04 05:01:41 INFO     ordersize oof based on avg WMAE:  16.90089
+2023-03-04 05:01:41 INFO     rpc oof based on avg WRMSE:  3.49412
+2023-03-04 05:01:41 INFO     rpc oof based on avg WMAE:  0.38957
+2023-03-04 05:01:41 INFO     
+
+evaluating results based on lightgbm for seller
+2023-03-04 05:01:41 INFO     convrt oof based on lightgbm WRMSE:  0.02966
+2023-03-04 05:01:41 INFO     convrt oof based on lightgbm WMAE:  0.01492
+2023-03-04 05:01:42 INFO     ordersize oof based on lightgbm WRMSE:  28.93893
+2023-03-04 05:01:42 INFO     ordersize oof based on lightgbm WMAE:  14.27520
+2023-03-04 05:01:42 INFO     rpc oof based on lightgbm WRMSE:  0.99781
+2023-03-04 05:01:42 INFO     rpc oof based on lightgbm WMAE:  0.29366
+2023-03-04 05:01:42 INFO     rpc_new oof based on lightgbm WRMSE:  2.85983
+2023-03-04 05:01:42 INFO     rpc_new oof based on lightgbm WMAE:  0.51742
+2023-03-04 05:01:56 INFO     
+
+
+Evaluating results for brand
+2023-03-04 05:01:56 INFO     
+evaluating results based on avg for the last 2 weeks for each department for brand
+2023-03-04 05:02:01 INFO     convrt oof based on avg for the last 2 weeks for each dept WRMSE:  0.04971
+2023-03-04 05:02:01 INFO     convrt oof based on avg for the last 2 weeks for each dept WMAE:  0.01485
+2023-03-04 05:02:01 INFO     ordersize oof based on avg for the last 2 weeks for each dept WRMSE:  82.45570
+2023-03-04 05:02:01 INFO     ordersize oof based on avg for the last 2 weeks for each dept WMAE:  39.42211
+2023-03-04 05:02:02 INFO     rpc oof based on avg for the last 2 weeks for each dept WRMSE:  3.92396
+2023-03-04 05:02:02 INFO     rpc oof based on avg for the last 2 weeks for each dept WMAE:  0.81443
+2023-03-04 05:02:02 INFO     
+evaluating results based on avg for the last 2 weeks for brand
+2023-03-04 05:02:02 INFO     convrt oof based on avg for the last 2 weeks WRMSE:  0.06368
+2023-03-04 05:02:02 INFO     convrt oof based on avg for the last 2 weeks WMAE:  0.00979
+2023-03-04 05:02:02 INFO     ordersize oof based on avg for the last 2 weeks WRMSE:  25.76414
+2023-03-04 05:02:02 INFO     ordersize oof based on avg for the last 2 weeks WMAE:  12.11811
+2023-03-04 05:02:02 INFO     rpc oof based on avg for the last 2 weeks WRMSE:  6.51418
+2023-03-04 05:02:02 INFO     rpc oof based on avg for the last 2 weeks WMAE:  0.62161
+2023-03-04 05:02:02 INFO     
+evaluating results based on avg for brand
+2023-03-04 05:02:02 INFO     convrt oof based on avg WRMSE:  0.04925
+2023-03-04 05:02:02 INFO     convrt oof based on avg WMAE:  0.00719
+2023-03-04 05:02:02 INFO     ordersize oof based on avg WRMSE:  126.07921
+2023-03-04 05:02:02 INFO     ordersize oof based on avg WMAE:  65.43001
+2023-03-04 05:02:02 INFO     rpc oof based on avg WRMSE:  4.49520
+2023-03-04 05:02:02 INFO     rpc oof based on avg WMAE:  0.47111
+2023-03-04 05:02:02 INFO     
+
+evaluating results based on lightgbm for brand
+2023-03-04 05:02:02 INFO     convrt oof based on lightgbm WRMSE:  0.01713
+2023-03-04 05:02:02 INFO     convrt oof based on lightgbm WMAE:  0.00648
+2023-03-04 05:02:02 INFO     ordersize oof based on lightgbm WRMSE:  45.70436
+2023-03-04 05:02:02 INFO     ordersize oof based on lightgbm WMAE:  23.99047
+2023-03-04 05:02:02 INFO     rpc oof based on lightgbm WRMSE:  1.67958
+2023-03-04 05:02:02 INFO     rpc oof based on lightgbm WMAE:  0.46740
+2023-03-04 05:02:02 INFO     rpc_new oof based on lightgbm WRMSE:  3.84365
+2023-03-04 05:02:02 INFO     rpc_new oof based on lightgbm WMAE:  0.62839
